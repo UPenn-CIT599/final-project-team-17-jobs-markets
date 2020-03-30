@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Serverless Jersey API - com.upenn.cit591::jobmarkets
+Globals:
+  Api:
+    EndpointConfiguration: REGIONAL
+Resources:
+  JobmarketsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.upenn.cit591.jobmarkets.StreamLambdaHandler::handleRequest
+      Runtime: java8
+      CodeUri: s3://jobmarkets.cit591.upenn/bac3178181cc6b44b71090ad291ee05e
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 15
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+Outputs:
+  JobmarketsApi:
+    Description: URL for application
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping,https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/jobs
+    Export:
+      Name: JobmarketsApi
