@@ -10,7 +10,7 @@ Resources:
     Properties:
       Handler: com.upenn.cit591.jobmarkets.StreamLambdaHandler::handleRequest
       Runtime: java8
-      CodeUri: s3://jobmarkets.cit591.upenn/bac3178181cc6b44b71090ad291ee05e
+      CodeUri: s3://jobmarkets.cit591.upenn/050f95a111e86e1378de7bbe97c011e3
       MemorySize: 512
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 15

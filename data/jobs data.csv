@@ -1,13 +1,9 @@
 Job Post Date,Job Title,Job Description,Company,Primary Location,Required Skills,Salary Range,Benchmark Salary,Benchmark Skills
-3/31/20,Software Dev Engineer I,This opportunity specifically is as a Software Development Engineer within the Audible Android group. The team is building customer facing UI for Audible Android application. We need your help to develop and deliver on this vision. Success means we lay the foundation for continued expansion of our company without disrupting an already tremendously successful and much-loved project.,Audible,"Newark, NJ","Own key components within our platform. Lead the way. Partner with product management to imagine, design. Develop, test, and launch software that invigorates our community and inspires our peers.",68-134,100,"Java,C++"
-3/31/20,Software Development Engineer,"We have a rapidly growing customer base and an exciting charter in front of us that includes solving highly complex engineering and algorithmic problems. We are looking for passionate and talented Software Development Engineers to join us to innovate on this new service that addresses customer needs to build modern contact centers in the cloud. The position represents a rare opportunity to be a part of a fast-growing business soon after launch, and help shape the technology and product as we grow. You will be playing a crucial role in developing the next generation contact center, and get the opportunity to design and deliver scalable, resilient systems while maintaining a constant customer focus.",Amazon,"New York, NY","Java, C++, C#",102-143,100,"Java,C++"
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-Notes,,,,,,,,
-Required column,Required column,Optional column,Required,Required," Using "","" to saperate multiple skills","Low-High, inclusive. USD",Same Location Avg Salary,"Required Skills associated with Avg Salary Job Positions ( (Using "","" to saperate multiple skills))"
+3/31/20,Software Dev Engineer I - 1,This opportunity specifically is as a Software Development Engineer within the Audible Android group. ,Audible,NJ,SKILL1,10000-15000,123098,JAVA/C++
+3/20/20,Software Development Engineer - 2,We have a rapidly growing customer base and an exciting charter in front of us that includes solving highly complex engineering and algorithmic problems. ,Amazon,NY,SKILL2,150000-200000,123498,JAVA/C++
+3/15/20,Software Dev Engineer I - 3,This opportunity specifically is as a Software Development Engineer within the Audible Android group. ,Google,NJ,SKILL1-sKILL5,10000-15000,123098,JAVA/C++
+3/12/20,Software Development Engineer -  4,We have a rapidly growing customer base and an exciting charter in front of us that includes solving highly complex engineering and algorithmic problems. ,Microsoft,NY,SKILL2,10000-15000,123098,JAVA/C++
+3/31/20,Software Dev Engineer I - 5,This opportunity specifically is as a Software Development Engineer within the Audible Android group. ,BA,NJ,SKILL1,150000-200000,123098,JAVA/C++
+2/8/20,Software Development Engineer. - 6,We have a rapidly growing customer base and an exciting charter in front of us that includes solving highly complex engineering and algorithmic problems. ,Amazon,NY,SKILL2,10000-15000,123098,JAVA/C++
+2/10/20,Software Dev Engineer I - 8,This opportunity specifically is as a Software Development Engineer within the Audible Android group. ,Audible,NJ,SKILL1,10000-15000,123098,JAVA/C++
+1/21/20,Software Development Engineer - 9,We have a rapidly growing customer base and an exciting charter in front of us that includes solving highly complex engineering and algorithmic problems. ,Amazon,NY,SKILL2,10000-15000,123098,JAVA/C++
