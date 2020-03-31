@@ -41,11 +41,48 @@ Mounting com.amazonaws.serverless.archetypes.StreamLambdaHandler::handleRequest 
 Using a new shell, you can send a test ping request to your API:
 
 ```bash
-$ curl -s http://127.0.0.1:3000/ping | python -m json.tool
+$ curl -s http://127.0.0.1:3000/jobs | python -m json.tool
 
-{
-    "pong": "Hello, World!"
-}
+[
+    {
+        "benchmarkJob": null,
+        "company": {
+            "companyName": "hiring company 1",
+            "jobs": []
+        },
+        "description": "this is job description",
+        "location": "New York",
+        "optionalSkills": null,
+        "postDate": 1585697799844,
+        "requiredSkills": [
+            "java",
+            "c++",
+            "communication"
+        ],
+        "salaryMax": 1500000.0,
+        "salaryMin": 110000.0,
+        "title": "First Job"
+    },
+    {
+        "benchmarkJob": null,
+        "company": {
+            "companyName": "hiring company 2",
+            "jobs": []
+        },
+        "description": "this is job description",
+        "location": "New Jersey",
+        "optionalSkills": null,
+        "postDate": 1585697799847,
+        "requiredSkills": [
+            "everything",
+            "machine learning",
+            "you name it"
+        ],
+        "salaryMax": 2000000.0,
+        "salaryMin": 130900.0,
+        "title": "Second Job"
+    }
+]
 ``` 
 
 You can use the [AWS CLI](https://aws.amazon.com/cli/) to quickly deploy your application to AWS Lambda and Amazon API Gateway with your SAM template.
@@ -100,9 +137,46 @@ $ aws cloudformation describe-stacks --stack-name ServerlessJerseyApi
 Copy the `OutputValue` into a browser or use curl to test your first request:
 
 ```bash
-$ curl -s https://xxxxxxx.execute-api.us-west-2.amazonaws.com/Prod/ping | python -m json.tool
+$ curl -s https://xxxxxxx.execute-api.us-west-2.amazonaws.com/Prod/jsob | python -m json.tool
 
-{
-    "pong": "Hello, World!"
-}
+[
+    {
+        "benchmarkJob": null,
+        "company": {
+            "companyName": "hiring company 1",
+            "jobs": []
+        },
+        "description": "this is job description",
+        "location": "New York",
+        "optionalSkills": null,
+        "postDate": 1585697799844,
+        "requiredSkills": [
+            "java",
+            "c++",
+            "communication"
+        ],
+        "salaryMax": 1500000.0,
+        "salaryMin": 110000.0,
+        "title": "First Job"
+    },
+    {
+        "benchmarkJob": null,
+        "company": {
+            "companyName": "hiring company 2",
+            "jobs": []
+        },
+        "description": "this is job description",
+        "location": "New Jersey",
+        "optionalSkills": null,
+        "postDate": 1585697799847,
+        "requiredSkills": [
+            "everything",
+            "machine learning",
+            "you name it"
+        ],
+        "salaryMax": 2000000.0,
+        "salaryMin": 130900.0,
+        "title": "Second Job"
+    }
+]
 ```
