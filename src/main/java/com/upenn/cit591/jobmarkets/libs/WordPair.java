@@ -1,15 +1,29 @@
 package com.upenn.cit591.jobmarkets.libs;
 
+/**
+ * A class to manage relationship between a pair of words
+ * @author zhongliu
+ *
+ */
 public class WordPair {
 
 	private String word1;
 	private String originalWord1;
 	private String word2;
 	private String originalWord2;
+	
+	/**
+	 * get original word
+	 * @return
+	 */
 	public String getOriginalWord1() {
 		return originalWord1;
 	}
 
+	/**
+	 * get original word
+	 * @return
+	 */
 	public String getOriginalWord2() {
 		return originalWord2;
 	}
@@ -124,30 +138,42 @@ public class WordPair {
 		
 	}
 	
-	
+	/**
+	 * get left similarity
+	 * @return
+	 */
 	public int getLeftSimilarity() {
 		return leftSimilarity;
 	}
+	/**
+	 * get right similarity 
+	 * @return
+	 */
 	public int getRightSimilarity() {
 		return rightSimilarity;
 	}
+	/**
+	 * get similarity
+	 * @return
+	 */
 	public double getSimilarity() {
 		return similarity;
 	}
+	/**
+	 * get common percent
+	 * @return
+	 */
 	public double getCommonPercent() {
 		return this.commonPercent;
 	}
+	
+	/**
+	 * get number of common letters
+	 * @return
+	 */
 	public int getNumberOfCommonLetters() {
 		return numberOfCommonLetters;
 	}
-	
-	public String getWord1() {
-		return this.word1;
-	}
-	public String getWord2() {
-		return this.word2;
-	}
-	
 	
 	public static void main(String[] args) {
 		String word1 = "oblige";

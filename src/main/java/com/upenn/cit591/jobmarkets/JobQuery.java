@@ -8,6 +8,11 @@ import com.upenn.cit591.jobmarkets.domain.Company;
 import com.upenn.cit591.jobmarkets.domain.Job;
 import com.upenn.cit591.jobmarkets.domain.Jobs;
 
+/**
+ * Job Query interface 
+ * @author zhongliu
+ *
+ */
 public class JobQuery {
 
 	private Jobs jobs = null;
@@ -89,10 +94,15 @@ public class JobQuery {
 		return jobs.getJobsByQuery(query);
 	}
 	
+	/**
+	 * get a list of hiring companies
+	 * @return
+	 */
 	public Company[] hiringCompanies(){
 		return (Company[])this.jobs.getHiringCompanies().values().toArray();
 	}
 
+	
 	public static void main(String[] args) {
 		JobQuery jq = new JobQuery();
 		ArrayList<Job> jobs = jq.jobs() ;
