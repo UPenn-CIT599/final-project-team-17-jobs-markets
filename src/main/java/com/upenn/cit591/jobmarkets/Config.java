@@ -16,6 +16,9 @@ public class Config {
 		Config.init();
 	}
 	
+	/**
+	 * initialize configuration of this application. 
+	 */
 	public static void init() {
 //		URL location = Config.class.getProtectionDomain().getCodeSource().getLocation();
 //		Config.runtimeLocation = location.getFile().replaceAll("%20", " ");

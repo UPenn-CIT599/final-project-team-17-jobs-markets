@@ -16,7 +16,11 @@ import java.io.OutputStream;
 import com.upenn.cit591.jobmarkets.resource.PingResource;
 import com.upenn.cit591.jobmarkets.resource.JobResource;;
 
-
+/**
+ * http handler
+ * @author zhongliu
+ *
+ */
 public class StreamLambdaHandler implements RequestStreamHandler {
     private static final ResourceConfig jerseyApplication = new ResourceConfig()
                                                                     .register(PingResource.class)
