@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+	<title>MCIT591 Job Trend</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- JQUERY -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- HTML TO CANVAS -->
+    <script src="../js/html2canvas.js"></script>
+
+    <!-- Function to parse html and js code chunks made by Yan Holtz -->
+    <script src="../js/myParser.js"></script>
+	<link rel="stylesheet" type = "text/css" href="viz.css">
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <!-- Color scale -->
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <!-- Load d3-cloud -->
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+
+</head>
+
+<body>
+
+<H1 align="center"> MCIT591 Final Project Team 17 : Job Market Analysis </H1>
+<H2 align="center"> Member: Jie Bao, Zhong (Kevin) Liu, Terry Zhang </H2>
+
+
+<div id="tooltip"></div><!-- div to hold tooltip. -->
+
+<svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
+
+<!--Create a div where the  word count. -->
+<div id="my_wordCount"></div>
+
+<!-- Create a div where the graph will take place -->
+<div id="salaryBarChart"></div>
+
+
+
+<!-- Create a div where the barChart will take place -->
+<svg id="my_pieChart"></svg>
+
+<!-- barchart -->
+<script src="pieChart.js"></script>
+
+
+<!-- creates wordCount. -->
+<script src="wordCount.js"></script> 
+
+<!-- creates Salary Barchart. -->
+<script src="barChart.js"></script> 
+
+
+<!-- creates uStates. -->
+<script src="uStates.js"></script> 
+
+</body>
