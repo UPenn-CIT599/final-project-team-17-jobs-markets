@@ -17,7 +17,6 @@ public class JobQuery {
 
 	private Jobs jobs = null;
 	public JobQuery() {
-		Config.init();
 		this.jobs = new Jobs();
 	}
 	
@@ -35,19 +34,19 @@ public class JobQuery {
 	 * @param location
 	 * @return
 	 */
-	public ArrayList<Job> jobs(String title, String location, String companyName){
+	public ArrayList<Job> jobs(String title, String state, String companyName){
 		HashMap<String, String> query = new HashMap<>();
-		if(title!=null) {
+		if(title!=null&&title!="") {
 			query.put(Job.QUERY_KEY_TITLE, title);
 		}
-		if(location!=null) {
-			query.put(Job.QUERY_KEY_LOCATION, location);
+		if(state!=null&&state!="") {
+			query.put(Job.QUERY_KEY_LOCATION_STATE, state);
 		}
-		if(companyName!=null) {
+		if(companyName!=null&&companyName!="") {
 			query.put(Job.QUERY_KEY_COMPANY, companyName);
 		}
-		if(query.size()==0) {
-			return null;
+		if(query.size()==0) {//return all jobs
+			return this.jobs();
 		}
 		return jobs.getJobsByQuery(query);
 	}
@@ -59,19 +58,19 @@ public class JobQuery {
 	 * @param salaryMax
 	 * @return
 	 */
-	public ArrayList<Job> jobs(String title, double salaryMin, double salaryMax){
+	public ArrayList<Job> jobs(String title){
 		HashMap<String, String> query = new HashMap<>();
 		if(title!=null) {
 			query.put(Job.QUERY_KEY_TITLE, title);
 		}
 		
-		if(salaryMin!=Job.SALARY_UNSPECIFIED && salaryMin>=0) {
-			query.put(Job.QUERY_KEY_SALARY_MIN, String.valueOf(salaryMin));
-		}
-		
-		if(salaryMax!=Job.SALARY_UNSPECIFIED && salaryMax>=0) {
-			query.put(Job.QUERY_KEY_SALARY_MAX, String.valueOf(salaryMax));
-		}
+//		if(salaryMin!=Job.SALARY_UNSPECIFIED && salaryMin>=0) {
+//			query.put(Job.QUERY_KEY_SALARY_MIN, String.valueOf(salaryMin));
+//		}
+//		
+//		if(salaryMax!=Job.SALARY_UNSPECIFIED && salaryMax>=0) {
+//			query.put(Job.QUERY_KEY_SALARY_MAX, String.valueOf(salaryMax));
+//		}
 		
 		if(query.size()==0) {
 			return null;
@@ -85,7 +84,7 @@ public class JobQuery {
 	 * @param skills, if multiple skills, use "," to separate. 
 	 * @return
 	 */
-	public ArrayList<Job> jobs(String skills){
+	public ArrayList<Job> jobsBySkills(String skills){
 		if(skills==null) {
 			return null;
 		}
@@ -101,13 +100,53 @@ public class JobQuery {
 	public Company[] hiringCompanies(){
 		return (Company[])this.jobs.getHiringCompanies().values().toArray();
 	}
+	
+	/**
+	 * 
+	 * @return a HashMap that includes a list of job titles with count. 
+	 */
+	public HashMap<String,Integer> jobCountByTitle(){
+		return this.jobs.jobCountByTitle();
+	}
+	
+	/**
+	 * 
+	 * @return a HashMap that includes a list of companies with openning job count. 
+	 */
+	public HashMap<String,Integer> jobCountByCompany(){
+		return this.jobs.jobCountByCompany();
+	}
+	
+	/**
+	 * 
+	 * @return a HashMap that includes a list of states with openning job count. 
+	 */
+	public HashMap<String,Integer> jobCountByStates(){
+		return this.jobs.jobCountByStates();
+	}
+	
+	/**
+	 * 
+	 * @return a HashMap that includes a list of job required skills with openning job count. 
+	 */
+	public HashMap<String,Integer> jobCountBySkills(){
+		return this.jobs.jobCountBySkills();
+	}
 
 	
 	public static void main(String[] args) {
 		JobQuery jq = new JobQuery();
-		ArrayList<Job> jobs = jq.jobs() ;
+//		ArrayList<Job> jobs = jq.jobs() ;
+//		ArrayList<Job> jobs = jq.jobs(null, "CA", "");
+//		ArrayList<Job> jobs = jq.jobs(null, "FL", "Voyager");
+//		ArrayList<Job> jobs = jq.jobs("Data Scientist", "FL", "Voyager");
+		ArrayList<Job> jobs = jq.jobs("Data Scientist", "FL", "");
+
+		System.out.println(jobs.size()+" jobs found.");
+		int i=0;
 		for(Job j:jobs) {
-			System.out.println("Job Title="+j.getTitle());
+			i++;
+			System.out.println(j.toString());
 		}
 
 	}

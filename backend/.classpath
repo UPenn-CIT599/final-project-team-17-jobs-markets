@@ -6,11 +6,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/Users/jiejocelynbao/Downloads/jsoup-1.13.1.jar"/>
-	<classpathentry kind="lib" path="/Users/jiejocelynbao/Downloads/commons-io-2.6/commons-io-2.6-javadoc.jar"/>
-	<classpathentry kind="lib" path="/Users/jiejocelynbao/Downloads/commons-io-2.6/commons-io-2.6-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/jiejocelynbao/Downloads/commons-io-2.6/commons-io-2.6-test-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/jiejocelynbao/Downloads/commons-io-2.6/commons-io-2.6-tests.jar"/>
-	<classpathentry kind="lib" path="/Users/jiejocelynbao/Downloads/commons-io-2.6/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.6-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.6-test-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.6-tests.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.13.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

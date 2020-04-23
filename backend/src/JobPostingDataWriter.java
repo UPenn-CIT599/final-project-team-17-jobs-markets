@@ -10,11 +10,12 @@ import java.util.ArrayList;
  *
  */
 public class JobPostingDataWriter {
+	private String fileName = "JobPostingData.csv";
 	/**
 	 * Writes a CSV of job posting information from parsed data.
 	 */
 	public void writeJobInfo(ArrayList<String> JobPostingData) {
-		File out = new File("JobPostingData.csv");
+		File out = new File(fileName);
 
 		try (PrintWriter pw = new PrintWriter(out)) {
 
@@ -28,4 +29,12 @@ public class JobPostingDataWriter {
 			System.out.println("Could not write the File out.");
 		}
 	}
+	/**
+	 * @return the fileName
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+	
+	
 }

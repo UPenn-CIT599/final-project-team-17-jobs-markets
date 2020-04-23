@@ -27,6 +27,7 @@ public class JobPostingDataSourcing {
 			e.printStackTrace();
 		}
 		myDataWriter.writeJobInfo(myData);
+		System.out.println("Jobs posting file "+myDataWriter.getFileName()+" generated successfully");
 
 	}
 }

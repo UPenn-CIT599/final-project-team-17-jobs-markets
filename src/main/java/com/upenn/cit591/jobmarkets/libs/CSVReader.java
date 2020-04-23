@@ -56,7 +56,7 @@ public class CSVReader {
 	}
 	
 	/**
-	 * return current data row 
+	 * return current data row, starting from 0
 	 * @return
 	 */
 	public HashMap<String,String> currentRow(){
@@ -87,8 +87,9 @@ public class CSVReader {
 	 * @return alue of cell
 	 */
 	public String getCellValue(String columnName, HashMap<String,String> row) {
-		if(this.keysIndex.get(columnName)==null) {
-			System.err.print("Column:"+columnName+" doesn't exist");
+		columnName = columnName.toLowerCase().trim();
+		if(this.keysIndex.get(columnName.toLowerCase().trim())==null) {
+			System.err.println("Column:"+columnName+" doesn't exist");
 			return null;
 		}
 		
@@ -101,6 +102,7 @@ public class CSVReader {
 	 * @return value of cell
 	 */
 	public String getCellValue(String columnName) {
+		columnName = columnName.toLowerCase().trim();
 		if(this.keysIndex.get(columnName)==null) {
 			System.err.print("Column:"+columnName+" doesn't exist");
 			return null;
@@ -128,6 +130,7 @@ public class CSVReader {
 	 * @param csvFile
 	 */
 	private void loadData() {
+		System.err.println("trying to load data from file:"+csvFile);
 		File f = new File(csvFile);
 		try {
 			Scanner scanner = new Scanner(f);
@@ -139,10 +142,11 @@ public class CSVReader {
 				if(row==0) {
 					keys = csvRow.split(",");
 					this.initLookupKeys(keys);
-//					System.out.println("Row "+row+", keys size="+keys.length);
+					System.out.println("key row="+csvRow);
+					System.out.println("Row "+row+", keys size="+keys.length);
 				}else {
 					values = csvRow.split(",");
-//					System.out.println("Row "+row+", values size="+values.length);
+					System.out.println("Row "+row+", values size="+values.length);
 					loadRowData(row, keys,values);
 				}
 				row++;
@@ -160,7 +164,9 @@ public class CSVReader {
 	 */
 	private void initLookupKeys(String[] keys) {
 		for (int i=0;i<keys.length;i++) {
-			keysIndex.put(keys[i], Integer.valueOf(i));
+			String k = keys[i].toLowerCase().trim();
+			keysIndex.put(k, Integer.valueOf(i));
+//			System.out.println("Initializing key index, "+k+"="+i+"");
 		}
 	}
 	
@@ -182,7 +188,7 @@ public class CSVReader {
 		
 		HashMap<String,String> rowData = new HashMap<>();
 		for(int i=0;i<keys.length;i++) {
-			rowData.put(keys[i], values[i]);
+			rowData.put(keys[i].toLowerCase().trim(), values[i]);
 		}
 		
 		this.rowsData.add(rowData);
