@@ -1,6 +1,7 @@
 package com.upenn.cit591.jobmarkets.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import com.upenn.cit591.jobmarkets.libs.WordPair;
@@ -13,32 +14,34 @@ import com.upenn.cit591.jobmarkets.libs.WordPair;
 public class Job {
 	
 	public static String QUERY_KEY_TITLE = "TITLE";
-	public static String QUERY_KEY_LOCATION = "LOCATION";
+	public static String QUERY_KEY_LOCATION_STATE = "LOCATION_STATE";
 	public static String QUERY_KEY_SKILLS = "REQ_SKILLS";
 	public static String QUERY_KEY_COMPANY = "COMPANY";
-	public static String QUERY_KEY_SALARY_MIN = "SALARY_MIN";
-	public static String QUERY_KEY_SALARY_MAX = "SALARY_MAX";
+//	public static String QUERY_KEY_SALARY_MIN = "SALARY_MIN";
+//	public static String QUERY_KEY_SALARY_MAX = "SALARY_MAX";
 	
 	public static int SALARY_UNSPECIFIED = -1;
 
 	
 	private String title;
-	private Date postDate;
+//	private Date postDate;
 	private String description;
 	private Company company;
-	private String location;
+	private String location; //Primary Location. Format: City | State. E.g. Miami | FL
+	private String locationCity="";
+	private String locationState="";
 	private String[] requiredSkills;
-	private String[] optionalSkills;
-	private double salaryMin;
-	private double salaryMax;
+//	private String[] optionalSkills;
+//	private double salaryMin;
+//	private double salaryMax;
 	
 	private JobBenchmark benchmarkJob = null;
 	
 	
 	
-	public Job(String title,Date postDate) {
+	public Job(String title) {
 		this.title = title;
-		this.postDate = postDate;
+//		this.postDate = postDate;
 	}
 	
 	/**
@@ -65,19 +68,19 @@ public class Job {
 	 * @param max
 	 * @return true if given range is w/in this jon's range, otherwise, false. 
 	 */
-	public boolean isSalaryInRange(double min, double max) {
-		if (min!=this.SALARY_UNSPECIFIED) {
-			if(this.salaryMin<min && this.salaryMax<min){
-				return false;
-			}
-		}
-		if (max!=this.SALARY_UNSPECIFIED) {
-			if(this.salaryMin>max && this.salaryMax>max) {
-				return false;
-			}
-		}
-		return true;
-	}
+//	public boolean isSalaryInRange(double min, double max) {
+//		if (min!=this.SALARY_UNSPECIFIED) {
+//			if(this.salaryMin<min && this.salaryMax<min){
+//				return false;
+//			}
+//		}
+//		if (max!=this.SALARY_UNSPECIFIED) {
+//			if(this.salaryMin>max && this.salaryMax>max) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
 
 	/**
 	 * @return the description
@@ -103,9 +106,9 @@ public class Job {
 	/**
 	 * @return the postDate
 	 */
-	public Date getPostDate() {
-		return postDate;
-	}
+//	public Date getPostDate() {
+//		return postDate;
+//	}
 
 	/**
 	 * @return the company
@@ -127,12 +130,36 @@ public class Job {
 	public String getLocation() {
 		return location;
 	}
+	
+	/**
+	 * 
+	 * @return city
+	 */
+	public String getLocationCity() {
+		return this.locationCity;
+	}
+	
+	/**
+	 * 
+	 * @return state
+	 */
+	public String getLocationState() {
+		return this.locationState;
+	}
+	
 
 	/**
-	 * @param location the location to set
+	 * @param location the location to set, Format: City | State. E.g. Miami | FL
 	 */
 	public void setLocation(String location) {
 		this.location = location;
+		if(location!=null) {
+			String[] loc = location.split("\\|");
+			this.locationCity = loc[0].trim().toUpperCase();
+			if(loc.length>=2) {
+				this.locationState = loc[1].trim().toUpperCase();
+			}
+		}
 	}
 
 	/**
@@ -152,44 +179,44 @@ public class Job {
 	/**
 	 * @return the optionalSkills
 	 */
-	public String[] getOptionalSkills() {
-		return optionalSkills;
-	}
+//	public String[] getOptionalSkills() {
+//		return optionalSkills;
+//	}
 
 	/**
 	 * @param optionalSkills the optionalSkills to set
 	 */
-	public void setOptionalSkills(String[] optionalSkills) {
-		this.optionalSkills = optionalSkills;
-	}
+//	public void setOptionalSkills(String[] optionalSkills) {
+//		this.optionalSkills = optionalSkills;
+//	}
 
 	/**
 	 * @return the salaryMin
 	 */
-	public double getSalaryMin() {
-		return salaryMin;
-	}
+//	public double getSalaryMin() {
+//		return salaryMin;
+//	}
 
 	/**
 	 * @param salaryMin the salaryMin to set
 	 */
-	public void setSalaryMin(double salaryMin) {
-		this.salaryMin = salaryMin;
-	}
+//	public void setSalaryMin(double salaryMin) {
+//		this.salaryMin = salaryMin;
+//	}
 
 	/**
 	 * @return the salaryMax
 	 */
-	public double getSalaryMax() {
-		return salaryMax;
-	}
+//	public double getSalaryMax() {
+//		return salaryMax;
+//	}
 
 	/**
 	 * @param salaryMax the salaryMax to set
 	 */
-	public void setSalaryMax(double salaryMax) {
-		this.salaryMax = salaryMax;
-	}
+//	public void setSalaryMax(double salaryMax) {
+//		this.salaryMax = salaryMax;
+//	}
 
 	/**
 	 * @return the benchmarkJob
@@ -212,11 +239,20 @@ public class Job {
 		this.title = title;
 	}
 
+	@Override
+	public String toString() {
+		return "Job [title=" + title + ", description=" + description + ", company=" + company + ", location="
+				+ location + ", locationCity=" + locationCity + ", locationState=" + locationState + ", requiredSkills="
+				+ Arrays.toString(requiredSkills) + ", benchmarkJob=" + benchmarkJob + "]";
+	}
+	
+	
+
 	/**
 	 * @param postDate the postDate to set
 	 */
-	public void setPostDate(Date postDate) {
-		this.postDate = postDate;
-	}	
+//	public void setPostDate(Date postDate) {
+//		this.postDate = postDate;
+//	}	
 
 }

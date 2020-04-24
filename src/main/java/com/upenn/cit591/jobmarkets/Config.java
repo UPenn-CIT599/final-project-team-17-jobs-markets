@@ -7,47 +7,41 @@ import java.net.URLDecoder;
 
 /**
  * Application Configuration
+ * Refer to: https://stackoverflow.com/questions/36463310/how-to-read-a-file-in-aws-lambda-function-written-in-java
  */
 public class Config {
-	public static String runtimeLocation = "";
-	public static String jobsDataFile;
-
-	public Config() {
-		Config.init();
+//	public static String runtimeLocation = "";
+	private String jobsPostingFileName = "JobPostingData.csv";
+	private String jobsPostingFileNameWithPath;
+	public void Config() {
+		this.init();
 	}
 	
+	private void init() {
+		ClassLoader classLoader = getClass().getClassLoader();
+       this.jobsPostingFileNameWithPath = classLoader.getResource(this.jobsPostingFileName).getFile();
+	}
+	
+	
+	
 	/**
-	 * initialize configuration of this application. 
+	 * @return the jobsPostingFileNameWithPath
 	 */
-	public static void init() {
-//		URL location = Config.class.getProtectionDomain().getCodeSource().getLocation();
-//		Config.runtimeLocation = location.getFile().replaceAll("%20", " ");
-//		Config.jobsDataFile = Config.runtimeLocation+"data/jobs data.csv";
-//		Config.jobsDataFile = Config.runtimeLocation+"./jobs data.csv";
-		try {
-			Config.jobsDataFile = Config.getPath("jobs data.csv");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+	public String getJobsPostingFileNameWithPath() {
+		if(this.jobsPostingFileNameWithPath==null) {
+			this.init();
 		}
-		System.out.println("jobs data file=" + Config.jobsDataFile);
+		return this.jobsPostingFileNameWithPath;
 	}
 
-	private static String getPath(String fileName) throws UnsupportedEncodingException {
-
-		String path = Config.class.getClassLoader().getResource("").getPath();
-		String fullPath = URLDecoder.decode(path, "UTF-8");
-		String pathArr[] = fullPath.split("/WEB-INF/classes/");
-
-		fullPath = pathArr[0];
-
-		String reponsePath = "";
-
-		// to read a file from webcontent
-
-		reponsePath = new File(fullPath).getPath() + File.separatorChar + fileName;
-
-		return reponsePath;
-
+	/**
+	 * 
+	 * @return configuration file path
+	 */
+	public static String getPostingFileName() {
+//		return "/Users/zhongliu/code/jobmarkets/jobmarkets/src/main/resources/JobPostingData.csv";
+		Config config = new Config();
+		return config.getJobsPostingFileNameWithPath();
 	}
 
 }
