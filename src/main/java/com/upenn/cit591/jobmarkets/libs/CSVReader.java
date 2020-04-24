@@ -130,7 +130,7 @@ public class CSVReader {
 	 * @param csvFile
 	 */
 	private void loadData() {
-		System.err.println("trying to load data from file:"+csvFile);
+		System.err.println("Loading data from file:"+csvFile);
 		File f = new File(csvFile);
 		try {
 			Scanner scanner = new Scanner(f);
@@ -142,11 +142,11 @@ public class CSVReader {
 				if(row==0) {
 					keys = csvRow.split(",");
 					this.initLookupKeys(keys);
-					System.out.println("key row="+csvRow);
-					System.out.println("Row "+row+", keys size="+keys.length);
+//					System.out.println("key row="+csvRow);
+//					System.out.println("Row "+row+", keys size="+keys.length);
 				}else {
 					values = csvRow.split(",");
-					System.out.println("Row "+row+", values size="+values.length);
+//					System.out.println("Row "+row+", values size="+values.length);
 					loadRowData(row, keys,values);
 				}
 				row++;

@@ -19,16 +19,27 @@ public class Jobs {
 	ArrayList<Job> jobs = new ArrayList<>();
 	HashMap<String,Company> hiringCompanies = new HashMap<>();
 	
-	
 	public Jobs() {
-		System.out.println("load job posting data from"+Config.getPostingFileName());
+//		System.out.println("load job posting data from"+Config.getPostingFileName());
 		this.loadJobsFromCSV(Config.getPostingFileName());
+	
 	}
 	
+	/**
+	 * initialize class from given csvFile. 
+	 * @param csvFile
+	 */
 	public Jobs(String csvFile) {
 		this.loadJobsFromCSV(csvFile);
 	}
 	
+	/**
+	 * initialize this class from a given list of jobs
+	 * @param jobs
+	 */
+	public Jobs(ArrayList<Job> jobs) {
+		this.jobs = jobs;
+	}
 	
 	/**
 	 * 
@@ -98,7 +109,7 @@ public class Jobs {
 		HashMap<String,Integer> jobSkillMap = new HashMap<>();
 		for(Job j:this.jobs) {
 			String skills[] = j.getRequiredSkills();
-			if(skills.length==0) {
+			if(skills==null || skills.length==0) {
 				continue;
 			}
 			for(int i=0;i<skills.length;i++) {
@@ -257,8 +268,5 @@ public class Jobs {
 	public HashMap<String, Company> getHiringCompanies() {
 		return hiringCompanies;
 	}
-	
-	
-	
 
 }
