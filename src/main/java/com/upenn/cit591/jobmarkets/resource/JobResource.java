@@ -4,17 +4,23 @@ import com.upenn.cit591.jobmarkets.JobQuery;
 import com.upenn.cit591.jobmarkets.domain.*;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @Path("/jobs")
 public class JobResource {
@@ -57,22 +63,69 @@ public class JobResource {
         return Response.status(200).entity(jobs).build();
     }
     
+    
+    @Path("/query/state/{state}")
     @GET
-    @Path("/query")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response jobs(@QueryParam("title") String title,
-    		@QueryParam("company") String company,@DefaultValue("NY") @QueryParam("state") String state) {
+    public Response queryJobs(@DefaultValue("NY") @PathParam("state") String state) {
     	//[/jobs/query?title=TITLE&company=COMPANY&state=STATE, E.g. /jobs/query?title=&company=&state=NY
     	//refer to https://stackoverflow.com/questions/21980244/using-single-jersey-rest-class-for-multiple-path
     	//https://docs.oracle.com/cd/E19798-01/821-1841/gilru/index.html
     	//https://mkyong.com/webservices/jax-rs/jax-rs-queryparam-example/
+    	//https://docs.oracle.com/cd/E19776-01/820-4867/ghrst/index.html
+    	
+//       System.err.println("State="+state);
+        
     	JobQuery query = new JobQuery();
-    	System.out.println("Input Param title="+title);
-    	System.out.println("Input Param company="+company);
-    	System.out.println("Input Param state="+state);
-    	ArrayList<Job> jobs = query.jobs(title, state, company);
+    	ArrayList<Job> jobs = query.jobs(null, state, null);
         return Response.status(200).entity(jobs).build();
     }
+    
+    
+    
+//    @Path("/query")
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response queryJobs(@Context UriInfo ui) {
+//    	//[/jobs/query?title=TITLE&company=COMPANY&state=STATE, E.g. /jobs/query?title=&company=&state=NY
+//    	//refer to https://stackoverflow.com/questions/21980244/using-single-jersey-rest-class-for-multiple-path
+//    	//https://docs.oracle.com/cd/E19798-01/821-1841/gilru/index.html
+//    	//https://mkyong.com/webservices/jax-rs/jax-rs-queryparam-example/
+//    	//https://docs.oracle.com/cd/E19776-01/820-4867/ghrst/index.html
+//    	
+//        MultivaluedMap<String, String> queryParams = ui.getQueryParameters();
+//       
+//        
+//        System.out.println("getPathParameters"+ ui.getPathParameters().toString());
+//
+//        System.err.println("queryParams="+ queryParams.toString());
+//        
+//        Object[] keys = queryParams.keySet().toArray();
+//        Object[] values = queryParams.values().toArray();
+//        for(int i=0;i<keys.length;i++){
+//        	System.out.println(keys[i]+"="+values[i]);
+//        }
+//
+//        String title = null;
+//        if(queryParams.get("title")!=null) {
+//        	title = queryParams.get("title").get(0);
+//        }
+//        
+//        String company = null;
+//        if(queryParams.get("company")!=null) {
+//        	title = queryParams.get("company").get(0);
+//        }
+//        
+//        String state = null;
+//        if(queryParams.get("state")!=null) {
+//        	title = queryParams.get("state").get(0);
+//        }
+//        
+//    	JobQuery query = new JobQuery();
+//    	ArrayList<Job> jobs = query.jobs(title, state, company);
+//        return Response.status(200).entity(jobs).build();
+//    }
+    
     
     @GET
     @Path("/titles")
