@@ -194,5 +194,36 @@ https://yrdltjhgh7.execute-api.us-east-1.amazonaws.com/Prod/jobs/query/state/NY
 
 
 # [Frontend] - Terry Zhang
+===================================================================================================================================
+The Frontend is deveoped using JavaScript for displaying the job market data, consisting of four graphs. 
+1. An interactive map to show how many job openings in each state from our scraped websites.  
+2. A word-cloud graph, The word cloud is comprised of the buzz words mentioned in the job descriptions with different font size to indicate the frequency.
+3. A pie chart, The pie chart is the minimum degree and experience requirement of the job qualification.
+4. A bar chart. The Bar chart is organized by each company type to show statistics of fields that have the most opening jobs for software engineering. 
+===================================================================================================================================
+Language and Libraries used in the WebApplication:
 
-@Terry to complete
+1. HTML allows us to specify the structure of Web content
+2. CSS is a formatting language used to describe the appearance of content in an HTML file
+3. Bootstrap: open source front-end development framework produced and maintained by Twitter that aids in producing clean, responsive web pages and applications. 
+4. JavaScripts:  Dynamically change Web Content
+5. D3: Data Driven Document
+6. SVG: Scalable Vector Graphics
+
+====================================================================================================================================
+WebApp Code Architecture 
+
+|-- WebApp 
+|-- index.html 
+|-- api_discription.doc
+|-- js
+    		`-- barChart.js 
+    		`-- jquery.min.js
+    		`-- pieChart.js
+    		`-- uStates.js
+    		`-- wordCount.js
+|-- css
+    		`-- viz.css
+
+
+
