@@ -91,6 +91,9 @@ $ cd $JOBS_HOME
 ```bash
 $ cd $JOBS_HOME
 $ mvn archetype:generate -DartifactId=jobmarkets -DarchetypeGroupId=com.amazonaws.serverless.archetypes -DarchetypeArtifactId=aws-serverless-jersey-archetype -DarchetypeVersion=1.4 -DgroupId=com.upenn.cit591 -Dversion=0.0.1-SNAPSHOT -Dinteractive=false
+
+Note: you can try to skip above mvn archetype:generate command if error occurs.
+ 
 $ mvn clean package
 
 [INFO] Scanning for projects...
