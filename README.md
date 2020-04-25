@@ -194,7 +194,7 @@ https://yrdltjhgh7.execute-api.us-east-1.amazonaws.com/Prod/jobs/query/state/NY
 
 
 # [Frontend] - Terry Zhang
-==============================================================================
+
 ```
 The Frontend is deveoped using JavaScript for displaying the job market data, consisting of four graphs. 
 1. An interactive map to show how many job openings in each state from our scraped websites.  
@@ -202,7 +202,6 @@ The Frontend is deveoped using JavaScript for displaying the job market data, co
 3. A pie chart, The pie chart is the minimum degree and experience requirement of the job qualification.
 4. A bar chart. The Bar chart is organized by each company type to show statistics of fields that have the most opening jobs for software engineering. 
 ```
-==============================================================================
 
 Language and Libraries used in the WebApplication:
 ```
