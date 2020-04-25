@@ -50,7 +50,10 @@ public class JobResource {
     	
     	jobs.add(job1);
     	jobs.add(job2);
-        return Response.status(200).entity(jobs).build();
+        return Response.status(200)
+        		.header("Access-Control-Allow-Origin", "*")
+        		.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+        		.entity(jobs).build();
     }
     
     @GET
@@ -60,7 +63,10 @@ public class JobResource {
     public Response all() {
     	JobQuery query = new JobQuery();
     	ArrayList<Job> jobs = query.jobs();
-        return Response.status(200).entity(jobs).build();
+        return Response.status(200)
+        		.header("Access-Control-Allow-Origin", "*")
+        		.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+        		.entity(jobs).build();
     }
     
     
@@ -78,7 +84,10 @@ public class JobResource {
         
     	JobQuery query = new JobQuery();
     	ArrayList<Job> jobs = query.jobs(null, state, null);
-        return Response.status(200).entity(jobs).build();
+        return Response.status(200)
+        		.header("Access-Control-Allow-Origin", "*")
+        		.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+        		.entity(jobs).build();
     }
     
     
@@ -134,7 +143,10 @@ public class JobResource {
     public Response jobTypes() {
     	JobQuery query = new JobQuery();
     	HashMap<String,Integer> jobTypes = query.jobCountByTitle();
-        return Response.status(200).entity(jobTypes).build();
+        return Response.status(200)
+        		.header("Access-Control-Allow-Origin", "*")
+        		.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+        		.entity(jobTypes).build();
     }
     
     
@@ -145,7 +157,10 @@ public class JobResource {
     public Response jobStates() {
     	JobQuery query = new JobQuery();
     	HashMap<String,Integer> jobStates = query.jobCountByStates();
-        return Response.status(200).entity(jobStates).build();
+        return Response.status(200)
+        		.header("Access-Control-Allow-Origin", "*")
+        		.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+        		.entity(jobStates).build();
     }
     
     @GET
@@ -155,7 +170,10 @@ public class JobResource {
     public Response jobSkills() {
     	JobQuery query = new JobQuery();
     	HashMap<String,Integer> jobSkills = query.jobCountBySkills();
-        return Response.status(200).entity(jobSkills).build();
+        return Response.status(200)
+        		.header("Access-Control-Allow-Origin", "*")
+        		.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+        		.entity(jobSkills).build();
     }
     
     
@@ -166,7 +184,10 @@ public class JobResource {
     public Response jobCompanies() {
     	JobQuery query = new JobQuery();
     	HashMap<String,Integer> jobCompanies = query.jobCountByCompany();
-        return Response.status(200).entity(jobCompanies).build();
+        return Response.status(200)
+        		.header("Access-Control-Allow-Origin", "*")
+        		.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+        		.entity(jobCompanies).build();
     }
     
     
