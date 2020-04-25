@@ -1,0 +1,34 @@
+CIT 591 Final Project - Team 17 - Job Markets
+
+[Overview]
+
+Core problems this application aims to address is being one stop to access jobs information in the markets. 
+In the project, we mean to “demonstrate” that we could use what we’ve learnt to create an application with proper architecture to achieve this purpose. 
+
+This DOESN’T mean to build a commercial ready product. 
+
+
+[Architecture]
+
+We are trying to use the JAVA knowledge we’ve learned from the course and beyond to build this application. 
+The application includes multiple layers that a classic modern application would have. 
+
+1. Data Fetcher:  a crawler to fetch jobs data from external data sources. Written by JAVA. 
+2. ETL:  a component to Extract, Transform, and Load clean data into file. Written by JAVA. 
+3. Jobs Data: use files as storage to store clean job data prepared by the ETL component. 
+4. API Service: a set of restful APIs to provide client application access to jobs data. Written by JAVA. 
+5. User Interface: an interface user can interact to see top demanding skills and jobs recommendation. 
+ 
+ 
+[Team]
+ 
+Team Members & Responsibility 
+1. Jie Bao: Data sourcing + ETL (including web crawler)
+2. Zhong (Kevin) Liu:  Architecture design, Infrastructure (AWS etc) and API Service
+3. Terry Zhang: front-end development 
+Project management: all. 
+ 
+[Resources]
+
+GitHub Repo: https://github.com/UPenn-CIT599/final-project-team-17-jobs-markets 
+Detailed Technical Design: https://github.com/UPenn-CIT599/final-project-team-17-jobs-markets/blob/master/Job%20Markets%20Trend%20Application%20Technical%20Design.pdf
