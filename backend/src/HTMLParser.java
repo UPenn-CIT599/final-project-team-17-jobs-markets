@@ -21,9 +21,8 @@ public class HTMLParser {
 	/**
 	 * This method parses the HTML file.
 	 */
-	public ArrayList<String> myHTMLParser() throws FileNotFoundException, IOException {
+	public ArrayList<String> myHTMLParser(File inputHtml) throws FileNotFoundException, IOException {
 		ArrayList<String> result = new ArrayList<>();
-		File inputHtml = new File("JobPostingData.html");
 		Document doc = Jsoup.parse(inputHtml, "UTF-8", "");
 
 		// Strip table from the document
