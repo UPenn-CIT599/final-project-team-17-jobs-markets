@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,15 +11,18 @@ import java.util.ArrayList;
  *
  */
 public class JobPostingDataSourcing {
+
 	public JobPostingDataSourcing() {
-		
+
 	}
-	public static void main(String[] args) {
+
+	public static void main(String[] args) throws IOException {
 		HTMLParser myHTMLParser = new HTMLParser();
 		JobPostingDataWriter myDataWriter = new JobPostingDataWriter();
 		ArrayList<String> myData = null;
 		try {
-			myData = myHTMLParser.myHTMLParser();
+			File inputHtml = new File("JobPostingData.html");
+			myData = myHTMLParser.myHTMLParser(inputHtml);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -27,7 +31,6 @@ public class JobPostingDataSourcing {
 			e.printStackTrace();
 		}
 		myDataWriter.writeJobInfo(myData);
-		System.out.println("Jobs posting file "+myDataWriter.getFileName()+" generated successfully");
-
+		System.out.println("Jobs posting file " + myDataWriter.getFileName() + " generated successfully");
 	}
 }
