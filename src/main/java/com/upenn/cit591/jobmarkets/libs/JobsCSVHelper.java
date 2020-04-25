@@ -37,7 +37,7 @@ public class JobsCSVHelper {
 		if(skillsString==null) {
 			return null;
 		}
-		return skillsString.split(",");
+		return skillsString.replace(";", "~").split("~");
 	}
 	
 	/**

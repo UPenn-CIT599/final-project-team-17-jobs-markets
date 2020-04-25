@@ -4,6 +4,10 @@ Description: AWS Serverless Jersey API - com.upenn.cit591::jobmarkets
 Globals:
   Api:
     EndpointConfiguration: REGIONAL
+    # Allows an application to call this API from anywhere
+    Cors:
+      AllowMethods: "'OPTIONS,POST,GET'"
+      AllowOrigin: "'*'"
 
 Resources:
   JobmarketsFunction:

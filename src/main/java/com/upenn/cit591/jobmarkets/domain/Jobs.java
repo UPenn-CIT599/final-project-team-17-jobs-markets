@@ -19,14 +19,112 @@ public class Jobs {
 	ArrayList<Job> jobs = new ArrayList<>();
 	HashMap<String,Company> hiringCompanies = new HashMap<>();
 	
-	
 	public Jobs() {
-		this.loadJobsFromCSV(Config.jobsDataFile);
+//		System.out.println("load job posting data from"+Config.getPostingFileName());
+		this.loadJobsFromCSV(Config.getPostingFileName());
+	
 	}
 	
+	/**
+	 * initialize class from given csvFile. 
+	 * @param csvFile
+	 */
 	public Jobs(String csvFile) {
 		this.loadJobsFromCSV(csvFile);
 	}
+	
+	/**
+	 * initialize this class from a given list of jobs
+	 * @param jobs
+	 */
+	public Jobs(ArrayList<Job> jobs) {
+		this.jobs = jobs;
+	}
+	
+	/**
+	 * 
+	 * @return a list of job titles with count of each
+	 */
+	public HashMap<String,Integer> jobCountByTitle(){
+		HashMap<String,Integer> jobTypes = new HashMap<>();
+		for(Job j:this.jobs) {
+			int count = 1;
+			if(jobTypes.get(j.getTitle())!=null) { //increase count
+				count = jobTypes.get(j.getTitle()).intValue()+1;
+			}
+			jobTypes.put(j.getTitle(), count);
+			
+		}
+		return jobTypes;
+	}
+	
+	/**
+	 * 
+	 * @return a list of job titles with count of each 
+	 */
+	public HashMap<String,Integer> jobCountByStates(){
+		HashMap<String,Integer> jobStates = new HashMap<>();
+		for(Job j:this.jobs) {
+			int count = 1;
+			String state = j.getLocationState();
+			if(state==null||state=="") {
+				continue; 
+			}
+			if(jobStates.get(state)!=null) { //increase count
+				count = jobStates.get(state).intValue()+1;
+			}
+			jobStates.put(state, count);
+			
+		}
+		return jobStates;
+	}
+	
+	/**
+	 * 
+	 * @return a list of job titles with count of each 
+	 */
+	public HashMap<String,Integer> jobCountByCompany(){
+		HashMap<String,Integer> jobCompanies = new HashMap<>();
+		for(Job j:this.jobs) {
+			int count = 1;
+			if(j.getCompany()==null) {
+				continue;
+			}
+			String companyName = j.getCompany().getCompanyName().toUpperCase();
+			if(jobCompanies.get(companyName)!=null) { //increase count
+				count = jobCompanies.get(companyName).intValue()+1;
+			}
+			jobCompanies.put(companyName, count);
+			
+		}
+		return jobCompanies;
+	}
+	
+	
+	/**
+	 * 
+	 * @return a list of job skills with job count of each
+	 */
+	public HashMap<String,Integer> jobCountBySkills(){
+		HashMap<String,Integer> jobSkillMap = new HashMap<>();
+		for(Job j:this.jobs) {
+			String skills[] = j.getRequiredSkills();
+			if(skills==null || skills.length==0) {
+				continue;
+			}
+			for(int i=0;i<skills.length;i++) {
+				String skill = skills[i].trim().toUpperCase();
+				int count = 1;
+				if(jobSkillMap.get(skill)!=null) {
+					count = jobSkillMap.get(skill).intValue()+1;
+				}
+				jobSkillMap.put(skill, count);
+			}
+			
+		}
+		return jobSkillMap;
+	}
+	
 	
 	/**
 	 * get a list of jobs filterred by queryTerms
@@ -40,7 +138,7 @@ public class Jobs {
 			return this.getJobs();
 		}
 		ArrayList<Job> filterredJobs = new ArrayList<>();
-		for(Job job:filterredJobs) {
+		for(Job job:this.jobs) {
 			if(this.isQueryCheckPassed(job,queryTerms)) {
 				filterredJobs.add(job);
 			}
@@ -63,13 +161,13 @@ public class Jobs {
 				}
 			}
 				
-			if(key.equalsIgnoreCase(Job.QUERY_KEY_LOCATION)) { //search by title
-				if(!job.getLocation().equalsIgnoreCase(queryTerms.get(job.QUERY_KEY_LOCATION))) {
+			if(key.equalsIgnoreCase(Job.QUERY_KEY_LOCATION_STATE)) { //search by state
+				if(!job.getLocationState().equalsIgnoreCase(queryTerms.get(job.QUERY_KEY_LOCATION_STATE))) {
 					return false;
 				}
 			}
 			
-			if(key.equalsIgnoreCase(Job.QUERY_KEY_COMPANY)) { //search by title
+			if(key.equalsIgnoreCase(Job.QUERY_KEY_COMPANY)) { //search by company
 				WordPair wp = new WordPair(job.getCompany().getCompanyName(),queryTerms.get(job.QUERY_KEY_COMPANY));
 				if (wp.getCommonPercent()<0.7) {
 					return false;
@@ -82,22 +180,22 @@ public class Jobs {
 				}
 			}
 			
-			double min = Job.SALARY_UNSPECIFIED;
-			double max = Job.SALARY_UNSPECIFIED;
-			if(key.equalsIgnoreCase(Job.QUERY_KEY_SALARY_MIN)) { //search by title
-				min = Double.parseDouble(queryTerms.get(job.QUERY_KEY_SALARY_MIN));
-			}
-
-			if(key.equalsIgnoreCase(Job.QUERY_KEY_SALARY_MAX)) { //search by title
-				max = Double.parseDouble(queryTerms.get(job.QUERY_KEY_SALARY_MAX));
-			}
-			
-			if(min!=Job.SALARY_UNSPECIFIED || max!=Job.SALARY_UNSPECIFIED) {
-				if(!job.isSalaryInRange(min, max)) {
-					return false;
-				}
-			}
-			
+//			double min = Job.SALARY_UNSPECIFIED;
+//			double max = Job.SALARY_UNSPECIFIED;
+//			if(key.equalsIgnoreCase(Job.QUERY_KEY_SALARY_MIN)) { //search by title
+//				min = Double.parseDouble(queryTerms.get(job.QUERY_KEY_SALARY_MIN));
+//			}
+//
+//			if(key.equalsIgnoreCase(Job.QUERY_KEY_SALARY_MAX)) { //search by title
+//				max = Double.parseDouble(queryTerms.get(job.QUERY_KEY_SALARY_MAX));
+//			}
+//			
+//			if(min!=Job.SALARY_UNSPECIFIED || max!=Job.SALARY_UNSPECIFIED) {
+//				if(!job.isSalaryInRange(min, max)) {
+//					return false;
+//				}
+//			}
+//			
 		}
 		return true;
 	}
@@ -107,14 +205,14 @@ public class Jobs {
 	 * @param csvFile
 	 */
 	private void loadJobsFromCSV(String csvFile) {
-		CSVReader csvReader = new CSVReader(Config.jobsDataFile);
+		CSVReader csvReader = new CSVReader(Config.getPostingFileName());
 		JobsCSVHelper helper = new JobsCSVHelper();
 		while(csvReader.hasNextRow()) {
 			csvReader.moveToNextRow();
-			String title = csvReader.getCellValue("Job Title");
-			String postDateStr = csvReader.getCellValue("Job Post Date");
-			Date postDate = helper.getJobPostDate(postDateStr);
-			String description = csvReader.getCellValue("Job Description");
+			String title = csvReader.getCellValue("Job title");
+//			String postDateStr = csvReader.getCellValue("Job Post Date");
+//			Date postDate = helper.getJobPostDate(postDateStr);
+			String description = csvReader.getCellValue("Job description");
 			String companyName = csvReader.getCellValue("Company");
 			Company hiringCompany = this.hiringCompanies.get(companyName); 
 			
@@ -126,32 +224,33 @@ public class Jobs {
 			String requiredSkillsStr = csvReader.getCellValue("Required Skills");
 			String[] requiredSkills = helper.getSkills(requiredSkillsStr);
 			
-			String salaryRangeStr = csvReader.getCellValue("Salary Range");
+//			String salaryRangeStr = csvReader.getCellValue("Salary Range");
 			
-			double salaryMin = helper.getSalaryMin(salaryRangeStr);
-			double salaryMax = helper.getSalaryMax(salaryRangeStr);
+//			double salaryMin = helper.getSalaryMin(salaryRangeStr);
+//			double salaryMax = helper.getSalaryMax(salaryRangeStr);
 			
-			String benchmarkSalaryStr = csvReader.getCellValue("Benchmark Salary");
-			double benchmarkSalaryMin = helper.getSalaryMin(benchmarkSalaryStr);
-			double benchmarkSalaryMax = helper.getSalaryMax(benchmarkSalaryStr);
+//			String benchmarkSalaryStr = csvReader.getCellValue("Benchmark Salary");
+//			double benchmarkSalaryMin = helper.getSalaryMin(benchmarkSalaryStr);
+//			double benchmarkSalaryMax = helper.getSalaryMax(benchmarkSalaryStr);
+//			
+//			String benchmarkSkillsStr = csvReader.getCellValue("Benchmark Skills");
+//			String[] benchmarkSkills = helper.getSkills(benchmarkSkillsStr);
 			
-			String benchmarkSkillsStr = csvReader.getCellValue("Benchmark Skills");
-			String[] benchmarkSkills = helper.getSkills(benchmarkSkillsStr);
-			
-			Job job = new Job(title,postDate);
+			Job job = new Job(title);
 			job.setDescription(description);
 			
 			job.setCompany(hiringCompany);
 			job.setLocation(location);
 			job.setRequiredSkills(requiredSkills);
-			job.setSalaryMin(salaryMin);
-			job.setSalaryMax(salaryMax);
+//			job.setSalaryMin(salaryMin);
+//			job.setSalaryMax(salaryMax);
 			
-			JobBenchmark benchmarkJob = new JobBenchmark(title,benchmarkSalaryMin,benchmarkSalaryMax,benchmarkSkills);
-			job.setBenchmarkJob(benchmarkJob);
+//			JobBenchmark benchmarkJob = new JobBenchmark(title,benchmarkSalaryMin,benchmarkSalaryMax,benchmarkSkills);
+//			job.setBenchmarkJob(benchmarkJob);
 			
 			this.jobs.add(job);
-			hiringCompany.addJob(job);
+//			System.out.println("Loading Job from file="+job.toString());
+//			hiringCompany.addJob(job);
 			this.hiringCompanies.put(companyName, hiringCompany);
 		}
 	}
@@ -169,8 +268,5 @@ public class Jobs {
 	public HashMap<String, Company> getHiringCompanies() {
 		return hiringCompanies;
 	}
-	
-	
-	
 
 }

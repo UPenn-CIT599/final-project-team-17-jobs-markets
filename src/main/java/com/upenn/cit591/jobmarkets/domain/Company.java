@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Company {
 
 	private String companyName;
-	private ArrayList<Job> jobs = new ArrayList<>();
+//	private ArrayList<Job> jobs = new ArrayList<>();
 	
 	public Company(String companyName) {
 		this.companyName = companyName;
@@ -23,19 +23,26 @@ public class Company {
 		return companyName;
 	}
 
+	@Override
+	public String toString() {
+		return "Company [companyName=" + companyName + "]";
+	}
+
 	/**
 	 * @return the jobs
 	 */
-	public ArrayList<Job> getJobs() {
-		return jobs;
-	}
+//	public ArrayList<Job> getJobs() {
+//		return jobs;
+//	}
 	
 	/**
 	 * add job to the company
 	 * @param job
 	 */
-	public void addJob(Job job) {
-		this.jobs.add(job);
-	}
+//	public void addJob(Job job) {
+//		this.jobs.add(job);
+//	}
+	
+	
 
 }
