@@ -3,18 +3,16 @@
 
 <head>
 	<title>MCIT591 Job Trend</title>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
     <!-- JQUERY -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
 
-    <!-- HTML TO CANVAS -->
-    <script src="../js/html2canvas.js"></script>
-
-    <!-- Function to parse html and js code chunks made by Yan Holtz -->
-    <script src="../js/myParser.js"></script>
-	<link rel="stylesheet" type = "text/css" href="viz.css">
+    <!-- CSS -->
+	<link rel="stylesheet" type = "text/css" href="css/viz.css">
 
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.js"></script>
@@ -36,31 +34,42 @@
 
 <div id="tooltip"></div><!-- div to hold tooltip. -->
 
-<svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
+<div  align="center" class='parent inline-flex-parent'>
 
-<!--Create a div where the  word count. -->
-<div id="my_wordCount"></div>
+	<div style="display: inline-block" class="title"> Job Position # of Different States
+	    <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
+	</div>
 
-<!-- Create a div where the graph will take place -->
-<div id="salaryBarChart"></div>
+	<div style="display: inline-block" class="title">
+		<!--Create a div where the  word count. -->
+		<div id="my_wordCount" style="display: inline-block">Trending Skills</div>
+
+		<!-- Create a div where the barChart will take place -->
+		<div style="display: inline-block" class="title">Job Qualification
+			<svg id="my_pieChart"></svg>
+		</div>
+
+		<!-- Create a div where the graph will take place -->
+		<div id="salaryBarChart" class="Title">Company Number in Different Areas </div>
 
 
+	</div>
 
-<!-- Create a div where the barChart will take place -->
-<svg id="my_pieChart"></svg>
+</div>
+
 
 <!-- barchart -->
-<script src="pieChart.js"></script>
+<script src="js/pieChart.js"></script>
 
 
 <!-- creates wordCount. -->
-<script src="wordCount.js"></script> 
+<script src="js/wordCount.js"></script> 
 
 <!-- creates Salary Barchart. -->
-<script src="barChart.js"></script> 
+<script src="js/barChart.js"></script> 
 
 
 <!-- creates uStates. -->
-<script src="uStates.js"></script> 
+<script src="js/uStates.js"></script> 
 
 </body>

@@ -14,12 +14,15 @@ var svg = d3.select("#salaryBarChart")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+var url = " https://yrdltjhgh7.execute-api.us-east-1.amazonaws.com/Prod/jobs/companies"
+var url1 = "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv"
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv", function(data) {
+d3.csv("js//companyType.csv", function(data) {
 
+  console.log("barChart", data)
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 13000])
+    .domain([0, 300])
     .range([ 0, width]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -31,7 +34,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
   // Y axis
   var y = d3.scaleBand()
     .range([ 0, height ])
-    .domain(data.map(function(d) { return d.Country; }))
+    .domain(data.map(function(d) { return d.CompanyType; }))
     .padding(.1);
   svg.append("g")
     .call(d3.axisLeft(y))
@@ -42,8 +45,8 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .enter()
     .append("rect")
     .attr("x", x(0) )
-    .attr("y", function(d) { return y(d.Country); })
-    .attr("width", function(d) { return x(d.Value); })
+    .attr("y", function(d) { return y(d.CompanyType); })
+    .attr("width", function(d) { return x(d.CompanyType); })
     .attr("height", y.bandwidth() )
     .attr("fill", "#69b3a2")
 

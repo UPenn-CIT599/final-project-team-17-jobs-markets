@@ -66,3 +66,8 @@ polyline{
   stroke-width: 2px;
   fill: none;
 }
+
+.Title {
+  background-color:#eaeaea;height:75px;margin:0;
+  text-align:left;vertical-align:top;
+}
