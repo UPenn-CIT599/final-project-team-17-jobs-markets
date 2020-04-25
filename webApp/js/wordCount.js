@@ -1,7 +1,9 @@
 
 
 // List of words
-var myWords = [{word: "Running", size: "10"}, {word: "Surfing", size: "20"}, {word: "Climbing", size: "50"}, {word: "Kiting", size: "30"}, {word: "Sailing", size: "20"}, {word: "Snowboarding", size: "60"} ]
+var myWords = [{word: "Machine Learning", size: "40"}, {word: "ios/Android", size: "30"}, {word: "QA/QC Engineer", size: "20"}, {word: "Full Stack", size: "20"},
+{word: "AWS", size: "20"}, {word: "Java", size: "20"}, {word: "Data Scientist", size: "50"}, {word: "Backend Developer", size: "25"}, {word: "Deep Learning", size: "30"}, 
+{word: "Computer Vision", size: "20"}, {word: "AI", size: "60"} ]
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 10, left: 10},

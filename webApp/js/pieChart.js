@@ -1,11 +1,11 @@
 
 // set the dimensions and margins of the graph
-var width = 300
-    height = 300
+var width = 400
+    height = 400
     margin = 40
 
 // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-var radius = Math.min(width, height) / 2 - margin
+var radius = Math.min(width, height) / 2 - margin*1.5
 
 // append the svg object to the div called 'my_dataviz'
 var svg = d3.select("#my_pieChart")
@@ -15,7 +15,7 @@ var svg = d3.select("#my_pieChart")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 // Create dummy data
-var data = {a: 9, b: 20, c:30, d:8, e:12}
+var data = {"5-yr Experience": 9, "Master": 20, "Bachelor":30, "Ph.D.":8, "2-yr Experience":12}
 
 // set the color scale
 var color = d3.scaleOrdinal()
@@ -51,7 +51,7 @@ svg
   .data(data_ready)
   .enter()
   .append('text')
-  .text(function(d){ return "grp " + d.data.key})
+  .text(function(d){ return  d.data.key})
   .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
   .style("text-anchor", "middle")
-  .style("font-size", 17)
+  .style("font-size", 17);
