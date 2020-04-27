@@ -26,8 +26,6 @@ var myData = [{CompanyType:"Pharmacy", Value:131},
 
 var url = " https://yrdltjhgh7.execute-api.us-east-1.amazonaws.com/Prod/jobs/companies"
 var url1 = "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv"
-// Parse the Data
-<<<<<<< HEAD
 
 // CompanyType Value
 var myData = [{CompanyType:"Pharmacy", Value:131}, 
@@ -40,12 +38,10 @@ var myData = [{CompanyType:"Pharmacy", Value:131},
 {CompanyType: "Media",  Value: 8}]
 
 
-d3.csv("https://github.com/UPenn-CIT599/final-project-team-17-jobs-markets/blob/master/webApp/js/companyType.csv", function(data) {
+// d3.csv("https://github.com/UPenn-CIT599/final-project-team-17-jobs-markets/blob/master/webApp/js/companyType.csv", function(data) {
 
-=======
 d3.json(url, function(data) {
-    
->>>>>>> d98bf871a4c1636506eb770391f6eb2d791e7f13
+
   data = myData
   console.log("barChart", data)
   // Add X axis
