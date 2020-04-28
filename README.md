@@ -195,7 +195,7 @@ https://yrdltjhgh7.execute-api.us-east-1.amazonaws.com/Prod/jobs/query/state/NY
 
 # [Frontend] - Terry Zhang
 
-The Frontend is deveoped using JavaScript for displaying the job market data, consisting of four graphs. 
+The Frontend is deveoped using JavaScript for displaying the job market data, consisting of four graphs. Use a web browser to open index.html to see the following results.
 
 '''
 ![](webApp/webPage.PNG)
